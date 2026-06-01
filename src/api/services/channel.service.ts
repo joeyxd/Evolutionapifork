@@ -447,8 +447,7 @@ export class ChannelStartupService {
     const expose = this.configService.get<Auth>('AUTHENTICATION').EXPOSE_IN_FETCH_INSTANCES;
 
     const instanceApikey = this.token || 'Apikey not found';
-
-    await eventManager.emit({
+    const payload = {
       instanceName: this.instance.name,
       origin: ChannelStartupService.name,
       event,
@@ -460,7 +459,12 @@ export class ChannelStartupService {
       local,
       integration,
       extra,
-    });
+    };
+
+    this.eventEmitter.emit('bridge.stream', payload);
+    this.eventEmitter.emit(`bridge.stream.${this.instance.name}`, payload);
+
+    await eventManager.emit(payload);
   }
 
   // Check if the number is MX or AR

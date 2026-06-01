@@ -4,6 +4,7 @@ import { eventEmitter } from '@config/event.config';
 import { Logger } from '@config/logger.config';
 
 import { BusinessController } from './controllers/business.controller';
+import { BridgeController } from './controllers/bridge.controller';
 import { CallController } from './controllers/call.controller';
 import { ChatController } from './controllers/chat.controller';
 import { GroupController } from './controllers/group.controller';
@@ -40,6 +41,7 @@ import { S3Service } from './integrations/storage/s3/services/s3.service';
 import { ProviderFiles } from './provider/sessions';
 import { PrismaRepository } from './repository/repository.service';
 import { CacheService } from './services/cache.service';
+import { BridgeService } from './services/bridge.service';
 import { WAMonitoringService } from './services/monitor.service';
 import { ProxyService } from './services/proxy.service';
 import { SettingsService } from './services/settings.service';
@@ -103,6 +105,8 @@ export const instanceController = new InstanceController(
 export const sendMessageController = new SendMessageController(waMonitor);
 export const callController = new CallController(waMonitor);
 export const chatController = new ChatController(waMonitor);
+const bridgeService = new BridgeService(waMonitor);
+export const bridgeController = new BridgeController(bridgeService);
 export const businessController = new BusinessController(waMonitor);
 export const groupController = new GroupController(waMonitor);
 export const labelController = new LabelController(waMonitor);

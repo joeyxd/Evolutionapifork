@@ -14,6 +14,7 @@ import mimeTypes from 'mime-types';
 import path from 'path';
 
 import { BusinessRouter } from './business.router';
+import { BridgeRouter } from './bridge.router';
 import { CallRouter } from './call.router';
 import { ChatRouter } from './chat.router';
 import { GroupRouter } from './group.router';
@@ -218,6 +219,7 @@ router
   .use('/message', new MessageRouter(...guards).router)
   .use('/call', new CallRouter(...guards).router)
   .use('/chat', new ChatRouter(...guards).router)
+  .use('/bridge', new BridgeRouter(...guards).router)
   .use('/business', new BusinessRouter(...guards).router)
   .use('/group', new GroupRouter(...guards).router)
   .use('/template', new TemplateRouter(configService, ...guards).router)
