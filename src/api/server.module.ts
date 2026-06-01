@@ -3,8 +3,8 @@ import { Chatwoot, configService, ProviderSession } from '@config/env.config';
 import { eventEmitter } from '@config/event.config';
 import { Logger } from '@config/logger.config';
 
-import { BusinessController } from './controllers/business.controller';
 import { BridgeController } from './controllers/bridge.controller';
+import { BusinessController } from './controllers/business.controller';
 import { CallController } from './controllers/call.controller';
 import { ChatController } from './controllers/chat.controller';
 import { GroupController } from './controllers/group.controller';
@@ -40,8 +40,8 @@ import { S3Controller } from './integrations/storage/s3/controllers/s3.controlle
 import { S3Service } from './integrations/storage/s3/services/s3.service';
 import { ProviderFiles } from './provider/sessions';
 import { PrismaRepository } from './repository/repository.service';
-import { CacheService } from './services/cache.service';
 import { BridgeService } from './services/bridge.service';
+import { CacheService } from './services/cache.service';
 import { WAMonitoringService } from './services/monitor.service';
 import { ProxyService } from './services/proxy.service';
 import { SettingsService } from './services/settings.service';

@@ -133,13 +133,7 @@ export class BridgeService {
     for (const item of eventData) {
       if (!item) continue;
       const key = item?.key || {};
-      const candidateIds = [
-        item?.remoteJid,
-        item?.chatId,
-        item?.id,
-        key?.remoteJid,
-        key?.remoteJidAlt,
-      ];
+      const candidateIds = [item?.remoteJid, item?.chatId, item?.id, key?.remoteJid, key?.remoteJidAlt];
       for (const candidate of candidateIds) {
         if (typeof candidate !== 'string') continue;
         if (candidate.includes('@') && !this.isIgnoredJid(candidate)) {
@@ -158,7 +152,9 @@ export class BridgeService {
 
     // Never let non-chat system streams pollute downstream consumers
     if (event === 'presence.update') {
-      return Array.from(ids).filter((jid) => jid.endsWith('@s.whatsapp.net') || jid.endsWith('@g.us') || jid.endsWith('@lid'));
+      return Array.from(ids).filter(
+        (jid) => jid.endsWith('@s.whatsapp.net') || jid.endsWith('@g.us') || jid.endsWith('@lid'),
+      );
     }
 
     return Array.from(ids);

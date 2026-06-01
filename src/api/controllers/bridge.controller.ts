@@ -20,11 +20,7 @@ export class BridgeController {
     return await this.bridgeService.getLabels(instanceName);
   }
 
-  public async stream(
-    { instanceName }: InstanceDto,
-    query: { events?: string },
-    res: Response,
-  ) {
+  public async stream({ instanceName }: InstanceDto, query: { events?: string }, res: Response) {
     await this.bridgeService.stream(instanceName, res, query || {});
   }
 }

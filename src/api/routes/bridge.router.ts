@@ -8,7 +8,6 @@ import { HttpStatus } from './index.router';
 export class BridgeRouter extends RouterBroker {
   constructor(...guards: RequestHandler[]) {
     super();
-    this.router = Router();
 
     this.router.get(this.routerPath('snapshot'), ...guards, async (req, res) => {
       const instance = req.params as unknown as InstanceDto;
@@ -20,7 +19,7 @@ export class BridgeRouter extends RouterBroker {
 
     this.router.get(this.routerPath('conversation'), ...guards, async (req, res) => {
       const instance = req.params as unknown as InstanceDto;
-      const query = req.query as { remoteJid: string; take?: number; page?: number };
+      const query = req.query as unknown as { remoteJid: string; take?: number; page?: number };
 
       const response = await bridgeController.getConversation(instance, query);
       return res.status(HttpStatus.OK).json(response);
@@ -38,4 +37,6 @@ export class BridgeRouter extends RouterBroker {
       await bridgeController.stream(instance, query, res);
     });
   }
+
+  public readonly router: Router = Router();
 }
