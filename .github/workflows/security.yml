@@ -12,7 +12,12 @@ jobs:
   codeql:
     name: CodeQL Analysis
     runs-on: ubuntu-latest
+    # Forks often do not have GitHub Advanced Security / code scanning enabled.
+    # Skip this job outside the upstream repository to avoid blocking CI/image publish.
+    if: github.repository == 'EvolutionAPI/evolution-api'
     timeout-minutes: 15
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     permissions:
       actions: read
       contents: read
