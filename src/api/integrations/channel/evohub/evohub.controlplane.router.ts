@@ -5,6 +5,13 @@ import { Integration } from '@api/types/wa.types';
 import { ConfigService, HttpServer } from '@config/env.config';
 import { RequestHandler, Router } from 'express';
 
+const firstParam = (value: string | string[] | undefined): string | undefined => {
+  if (Array.isArray(value)) {
+    return value[0];
+  }
+  return value;
+};
+
 /**
  * EvoHubControlPlaneRouter — rotas finas `/evohub/*` (contrato §2) que o frontend
  * (manager-v2) consome. Elas delegam ao `evoHubClient`, que fala com o hub usando a
@@ -37,7 +44,12 @@ export class EvoHubControlPlaneRouter extends RouterBroker {
     });
 
     this.router.get('/evohub/channels/:id', guard, async (req, res) => {
-      res.json(await evoHubClient.getChannel(req.params.id));
+      const channelId = firstParam(req.params.id);
+      if (!channelId) {
+        return res.status(400).json({ error: 'channel id is required' });
+      }
+
+      res.json(await evoHubClient.getChannel(channelId));
     });
 
     this.router.get('/evohub/available-channels', guard, async (_req, res) => {
@@ -114,7 +126,12 @@ export class EvoHubControlPlaneRouter extends RouterBroker {
     });
 
     this.router.post('/evohub/channels/:id/meta-connect', guard, async (req, res) => {
-      res.json(await evoHubClient.connectToMeta(req.params.id, req.body));
+      const channelId = firstParam(req.params.id);
+      if (!channelId) {
+        return res.status(400).json({ error: 'channel id is required' });
+      }
+
+      res.json(await evoHubClient.connectToMeta(channelId, req.body));
     });
   }
 }
