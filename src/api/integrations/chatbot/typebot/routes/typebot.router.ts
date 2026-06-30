@@ -43,7 +43,7 @@ export class TypebotRouter extends RouterBroker {
           request: req,
           schema: instanceSchema,
           ClassRef: InstanceDto,
-          execute: (instance) => typebotController.fetchBot(instance, req.params.typebotId),
+          execute: (instance) => typebotController.fetchBot(instance, req.params.typebotId as string),
         });
 
         res.status(HttpStatus.OK).json(response);
@@ -53,7 +53,7 @@ export class TypebotRouter extends RouterBroker {
           request: req,
           schema: typebotSchema,
           ClassRef: TypebotDto,
-          execute: (instance, data) => typebotController.updateBot(instance, req.params.typebotId, data),
+          execute: (instance, data) => typebotController.updateBot(instance, req.params.typebotId as string, data),
         });
 
         res.status(HttpStatus.OK).json(response);
@@ -63,7 +63,7 @@ export class TypebotRouter extends RouterBroker {
           request: req,
           schema: instanceSchema,
           ClassRef: InstanceDto,
-          execute: (instance) => typebotController.deleteBot(instance, req.params.typebotId),
+          execute: (instance) => typebotController.deleteBot(instance, req.params.typebotId as string),
         });
 
         res.status(HttpStatus.OK).json(response);
@@ -113,7 +113,7 @@ export class TypebotRouter extends RouterBroker {
           request: req,
           schema: instanceSchema,
           ClassRef: InstanceDto,
-          execute: (instance) => typebotController.fetchSessions(instance, req.params.typebotId),
+          execute: (instance) => typebotController.fetchSessions(instance, req.params.typebotId as string),
         });
 
         res.status(HttpStatus.OK).json(response);

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-import { JsonValue } from '@prisma/client/runtime/library';
+import { JsonValue } from '@prisma/client/runtime/client';
 import { AuthenticationState, WAConnectionState } from 'baileys';
 
 export enum Events {
@@ -154,4 +154,5 @@ export const Integration = {
   WHATSAPP_BUSINESS: 'WHATSAPP-BUSINESS',
   WHATSAPP_BAILEYS: 'WHATSAPP-BAILEYS',
   EVOLUTION: 'EVOLUTION',
+  EVOHUB: 'EVOHUB',
 };

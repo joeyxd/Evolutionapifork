@@ -43,7 +43,7 @@ export class FlowiseRouter extends RouterBroker {
           request: req,
           schema: instanceSchema,
           ClassRef: InstanceDto,
-          execute: (instance) => flowiseController.fetchBot(instance, req.params.flowiseId),
+          execute: (instance) => flowiseController.fetchBot(instance, req.params.flowiseId as string),
         });
 
         res.status(HttpStatus.OK).json(response);
@@ -53,7 +53,7 @@ export class FlowiseRouter extends RouterBroker {
           request: req,
           schema: flowiseSchema,
           ClassRef: FlowiseDto,
-          execute: (instance, data) => flowiseController.updateBot(instance, req.params.flowiseId, data),
+          execute: (instance, data) => flowiseController.updateBot(instance, req.params.flowiseId as string, data),
         });
 
         res.status(HttpStatus.OK).json(response);
@@ -63,7 +63,7 @@ export class FlowiseRouter extends RouterBroker {
           request: req,
           schema: instanceSchema,
           ClassRef: InstanceDto,
-          execute: (instance) => flowiseController.deleteBot(instance, req.params.flowiseId),
+          execute: (instance) => flowiseController.deleteBot(instance, req.params.flowiseId as string),
         });
 
         res.status(HttpStatus.OK).json(response);
@@ -103,7 +103,7 @@ export class FlowiseRouter extends RouterBroker {
           request: req,
           schema: instanceSchema,
           ClassRef: InstanceDto,
-          execute: (instance) => flowiseController.fetchSessions(instance, req.params.flowiseId),
+          execute: (instance) => flowiseController.fetchSessions(instance, req.params.flowiseId as string),
         });
 
         res.status(HttpStatus.OK).json(response);

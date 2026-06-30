@@ -42,7 +42,7 @@ export class DifyRouter extends RouterBroker {
           request: req,
           schema: instanceSchema,
           ClassRef: InstanceDto,
-          execute: (instance) => difyController.fetchBot(instance, req.params.difyId),
+          execute: (instance) => difyController.fetchBot(instance, req.params.difyId as string),
         });
 
         res.status(HttpStatus.OK).json(response);
@@ -52,7 +52,7 @@ export class DifyRouter extends RouterBroker {
           request: req,
           schema: difySchema,
           ClassRef: DifyDto,
-          execute: (instance, data) => difyController.updateBot(instance, req.params.difyId, data),
+          execute: (instance, data) => difyController.updateBot(instance, req.params.difyId as string, data),
         });
 
         res.status(HttpStatus.OK).json(response);
@@ -62,7 +62,7 @@ export class DifyRouter extends RouterBroker {
           request: req,
           schema: instanceSchema,
           ClassRef: InstanceDto,
-          execute: (instance) => difyController.deleteBot(instance, req.params.difyId),
+          execute: (instance) => difyController.deleteBot(instance, req.params.difyId as string),
         });
 
         res.status(HttpStatus.OK).json(response);
@@ -102,7 +102,7 @@ export class DifyRouter extends RouterBroker {
           request: req,
           schema: instanceSchema,
           ClassRef: InstanceDto,
-          execute: (instance) => difyController.fetchSessions(instance, req.params.difyId),
+          execute: (instance) => difyController.fetchSessions(instance, req.params.difyId as string),
         });
 
         res.status(HttpStatus.OK).json(response);

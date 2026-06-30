@@ -20,7 +20,7 @@ export class RedisCache implements ICache {
   }
   async get(key: string): Promise<any> {
     try {
-      return JSON.parse(await this.client.get(this.buildKey(key)));
+      return JSON.parse((await this.client.get(this.buildKey(key))) as string);
     } catch (error) {
       this.logger.error(error);
     }
@@ -28,7 +28,7 @@ export class RedisCache implements ICache {
 
   async hGet(key: string, field: string) {
     try {
-      const data = await this.client.hGet(this.buildKey(key), field);
+      const data = (await this.client.hGet(this.buildKey(key), field)) as string;
 
       if (data) {
         return JSON.parse(data, BufferJSON.reviver);

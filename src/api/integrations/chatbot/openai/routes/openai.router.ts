@@ -43,7 +43,7 @@ export class OpenaiRouter extends RouterBroker {
           request: req,
           schema: instanceSchema,
           ClassRef: InstanceDto,
-          execute: (instance) => openaiController.deleteCreds(instance, req.params.openaiCredsId),
+          execute: (instance) => openaiController.deleteCreds(instance, req.params.openaiCredsId as string),
         });
 
         res.status(HttpStatus.OK).json(response);
@@ -73,7 +73,7 @@ export class OpenaiRouter extends RouterBroker {
           request: req,
           schema: instanceSchema,
           ClassRef: InstanceDto,
-          execute: (instance) => openaiController.fetchBot(instance, req.params.openaiBotId),
+          execute: (instance) => openaiController.fetchBot(instance, req.params.openaiBotId as string),
         });
 
         res.status(HttpStatus.OK).json(response);
@@ -83,7 +83,7 @@ export class OpenaiRouter extends RouterBroker {
           request: req,
           schema: openaiSchema,
           ClassRef: OpenaiDto,
-          execute: (instance, data) => openaiController.updateBot(instance, req.params.openaiBotId, data),
+          execute: (instance, data) => openaiController.updateBot(instance, req.params.openaiBotId as string, data),
         });
 
         res.status(HttpStatus.OK).json(response);
@@ -93,7 +93,7 @@ export class OpenaiRouter extends RouterBroker {
           request: req,
           schema: instanceSchema,
           ClassRef: InstanceDto,
-          execute: (instance) => openaiController.deleteBot(instance, req.params.openaiBotId),
+          execute: (instance) => openaiController.deleteBot(instance, req.params.openaiBotId as string),
         });
 
         res.status(HttpStatus.OK).json(response);
@@ -133,7 +133,7 @@ export class OpenaiRouter extends RouterBroker {
           request: req,
           schema: instanceSchema,
           ClassRef: InstanceDto,
-          execute: (instance) => openaiController.fetchSessions(instance, req.params.openaiBotId),
+          execute: (instance) => openaiController.fetchSessions(instance, req.params.openaiBotId as string),
         });
 
         res.status(HttpStatus.OK).json(response);

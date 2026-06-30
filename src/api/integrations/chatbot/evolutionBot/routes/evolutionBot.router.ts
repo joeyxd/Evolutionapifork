@@ -43,7 +43,7 @@ export class EvolutionBotRouter extends RouterBroker {
           request: req,
           schema: instanceSchema,
           ClassRef: InstanceDto,
-          execute: (instance) => evolutionBotController.fetchBot(instance, req.params.evolutionBotId),
+          execute: (instance) => evolutionBotController.fetchBot(instance, req.params.evolutionBotId as string),
         });
 
         res.status(HttpStatus.OK).json(response);
@@ -53,7 +53,8 @@ export class EvolutionBotRouter extends RouterBroker {
           request: req,
           schema: evolutionBotSchema,
           ClassRef: EvolutionBotDto,
-          execute: (instance, data) => evolutionBotController.updateBot(instance, req.params.evolutionBotId, data),
+          execute: (instance, data) =>
+            evolutionBotController.updateBot(instance, req.params.evolutionBotId as string, data),
         });
 
         res.status(HttpStatus.OK).json(response);
@@ -63,7 +64,7 @@ export class EvolutionBotRouter extends RouterBroker {
           request: req,
           schema: instanceSchema,
           ClassRef: InstanceDto,
-          execute: (instance) => evolutionBotController.deleteBot(instance, req.params.evolutionBotId),
+          execute: (instance) => evolutionBotController.deleteBot(instance, req.params.evolutionBotId as string),
         });
 
         res.status(HttpStatus.OK).json(response);
@@ -103,7 +104,7 @@ export class EvolutionBotRouter extends RouterBroker {
           request: req,
           schema: instanceSchema,
           ClassRef: InstanceDto,
-          execute: (instance) => evolutionBotController.fetchSessions(instance, req.params.evolutionBotId),
+          execute: (instance) => evolutionBotController.fetchSessions(instance, req.params.evolutionBotId as string),
         });
 
         res.status(HttpStatus.OK).json(response);

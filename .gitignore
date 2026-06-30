@@ -46,3 +46,10 @@ lerna-debug.log*
 .tool-versions
 
 /prisma/migrations/*
+
+# Prisma 7: client gerado (TS) por provider — gerado via db:generate
+/prisma/generated/
+
+# Claude Code local settings
+.claude/
+_evo*

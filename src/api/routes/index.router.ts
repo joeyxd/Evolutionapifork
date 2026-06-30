@@ -163,8 +163,10 @@ if (metricsConfig.ENABLED) {
 
 if (!serverConfig.DISABLE_MANAGER) router.use('/manager', new ViewsRouter().router);
 
-router.get('/assets/*', (req, res) => {
-  const fileName = req.params[0];
+router.get('/assets/*splat', (req, res) => {
+  // Express 5 (path-to-regexp v8): wildcard nomeado captura segmentos como array
+  const splat = req.params.splat as unknown as string | string[] | undefined;
+  const fileName = Array.isArray(splat) ? splat.join('/') : (splat ?? '');
 
   // Security: Reject paths containing traversal patterns
   if (!fileName || fileName.includes('..') || fileName.includes('\\') || path.isAbsolute(fileName)) {
